@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/json-formatter-js/2.9.0/dist/json-formatter.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            width: 100%;
+        }
+
+        #app {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            display: flex;
+        }
+
+        #input {
+            width: 49%;
+            height: 100%;
+            margin-bottom: 10px;
+        }
+
+        #result {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 49%;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+
+        #error {
+            color: red;
+        }
+
+        #send {
+            width: 2%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <textarea id="input" placeholder="Enter JSON data..."></textarea>
+        <button id="send" onclick="formatJSON()">></button>
+        <div id="result"></div>
+    </div>
+    <a href="task2.html">Task 2</a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json-formatter-js/2.9.0/dist/json-formatter.min.js"></script>
+    <script>
+        function formatJSON() {
+            const inputElement = document.getElementById('input');
+            const resultElement = document.getElementById('result');
+            const errorElement = document.getElementById('error');
+
+            try {
+                const jsonData = JSON.parse(inputElement.value);
+                const formattedJSON = JSON.stringify(jsonData, null, 4);
+                console.log(formattedJSON);
+                resultElement.textContent = formattedJSON;
+            } catch (error) {
+                resultElement.textContent = '';
+                alert(error);
+            }
+        }
+    </script>
+</body>
+
+</html>
